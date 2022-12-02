@@ -30,6 +30,42 @@ function start() {
         }
       }
     }
+
+    if (readLine == 2) {
+      const readFile = fs.readFileSync(
+        `${__dirname}/topics/otter_flashcard_data.txt`,
+        'utf-8'
+      );
+      const questionArr = readFile.split('\n');
+      for (let i = 0; i < questionArr.length; i += 3) {
+        console.log(questionArr[i]);
+        const answer = readlineSync.question('Твой ответ: ');
+        if (answer.toLowerCase() === questionArr[i + 1].toLowerCase()) {
+          console.log('right!');
+          pointsCounter += 1;
+        } else {
+          console.log('Noo!');
+        }
+      }
+    }
+    if (readLine == 3) {
+      const readFile = fs.readFileSync(
+        `${__dirname}/topics/raccoon_flashcard_data.txt`,
+        'utf-8'
+      );
+      const questionArr = readFile.split('\n');
+      for (let i = 0; i < questionArr.length; i += 3) {
+        console.log(questionArr[i]);
+        const answer = readlineSync.question('Твой ответ: ');
+        if (answer.toLowerCase() === questionArr[i + 1].toLowerCase()) {
+          console.log('right!');
+          pointsCounter += 1;
+        } else {
+          console.log('Noo!');
+        }
+      }
+    }
+
   }
   questionQuiz(readLine);
   console.log('Твой результат: ', pointsCounter);
