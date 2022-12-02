@@ -65,6 +65,7 @@ function start() {
         }
       }
     }
+
   }
   questionQuiz(readLine);
   console.log('Твой результат: ', pointsCounter);
