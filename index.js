@@ -3,12 +3,16 @@ const fs = require('fs');
 const readlineSync = require('readline-sync');
 
 function start() {
-  console.log('Привет!');
+  const greetings = readlineSync.question(
+    'Добро пожаловать в QUIZ!\nКак тебя зовут?\n'
+  );
+  console.log('');
+  console.log('Привет,', greetings, '!');
   console.log('');
   console.log('Выбери тему:\n');
   console.log(' 1. Автомобили\n 2. Тюремная романтика\n 3. Спорт\n');
 
-  const readLine = readlineSync.question('>---');
+  const readLine = readlineSync.question('Номер темы: ');
   let pointsCounter = 0;
 
   // eslint-disable-next-line no-shadow
