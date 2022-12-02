@@ -6,7 +6,7 @@ function start() {
   console.log('Привет!');
   console.log('');
   console.log('Выбери тему:\n');
-  console.log(' 1. Ястребы\n 2. Выдры\n 3. Еноты\n');
+  console.log(' 1. Автомобили\n 2. Тюремная романтика\n 3. Спорт\n');
 
   const readLine = readlineSync.question('>---');
   let pointsCounter = 0;
@@ -14,26 +14,30 @@ function start() {
   // eslint-disable-next-line no-shadow
   function questionQuiz(readLine) {
     if (readLine == 1) {
-      const readFile = fs.readFileSync(
-        `${__dirname}/topics/nighthawk_flashcard_data.txt`,
-        'utf-8'
-      );
+      const readFile = fs.readFileSync(`${__dirname}/topics/cars.txt`, 'utf-8');
       const questionArr = readFile.split('\n');
       for (let i = 0; i < questionArr.length; i += 3) {
         console.log(questionArr[i]);
         const answer = readlineSync.question('Твой ответ: ');
         if (answer.toLowerCase() === questionArr[i + 1].toLowerCase()) {
-          console.log('right!');
+          console.log('\uD83D\uDE97', 'Мотор!');
+          console.log('');
           pointsCounter += 1;
         } else {
-          console.log('Noo!');
+          console.log('\x1b[31m', 'Притормозил ты');
+          console.log(
+            '\x1b[36m%s\x1b[0m',
+            'Правильный ответ',
+            questionArr[i + 1],
+            '\n'
+          );
         }
       }
     }
 
     if (readLine == 2) {
       const readFile = fs.readFileSync(
-        `${__dirname}/topics/otter_flashcard_data.txt`,
+        `${__dirname}/topics/prisonsJokes.txt`,
         'utf-8'
       );
       const questionArr = readFile.split('\n');
@@ -41,16 +45,23 @@ function start() {
         console.log(questionArr[i]);
         const answer = readlineSync.question('Твой ответ: ');
         if (answer.toLowerCase() === questionArr[i + 1].toLowerCase()) {
-          console.log('right!');
+          console.log('Вечер в хату!');
+          console.log('');
           pointsCounter += 1;
         } else {
-          console.log('Noo!');
+          console.log('\x1b[31m', 'Теперь ты опущенный! \uD83D\uDC13');
+          console.log(
+            '\x1b[36m%s\x1b[0m',
+            'Правильный ответ',
+            questionArr[i + 1],
+            '\n'
+          );
         }
       }
     }
     if (readLine == 3) {
       const readFile = fs.readFileSync(
-        `${__dirname}/topics/raccoon_flashcard_data.txt`,
+        `${__dirname}/topics/sport.txt`,
         'utf-8'
       );
       const questionArr = readFile.split('\n');
@@ -58,16 +69,22 @@ function start() {
         console.log(questionArr[i]);
         const answer = readlineSync.question('Твой ответ: ');
         if (answer.toLowerCase() === questionArr[i + 1].toLowerCase()) {
-          console.log('right!');
+          console.log('\u26BD', 'Ты чемпион!');
+          console.log('');
           pointsCounter += 1;
         } else {
-          console.log('Noo!');
+          console.log('\x1b[31m', 'Лузер!');
+          console.log(
+            '\x1b[36m%s\x1b[0m',
+            'Правильный ответ',
+            `${questionArr[i + 1]}`,
+            '\n'
+          );
         }
       }
     }
-
   }
   questionQuiz(readLine);
-  console.log('Твой результат: ', pointsCounter);
+  console.log('\x1b[32m', 'Твой результат: ', pointsCounter);
 }
 start();
